@@ -11,6 +11,9 @@
 主观题：
 @Component 已经可以支持声明一个 bean 了，为何还要再弄个 @Bean 出来？
 答案请写在对应分支的 README.md 文件中
+@Componet和@Bean 是有不同的功能的。
+@Componet(and @Service and @Repository and @Controller)是通过clathpath扫描来自动检测和配置bean，是class level的。@Bean是直接声明一个bean，不需要Sring检测，是method level的annotation。
+有时候Spring的自动配置不可用，比如想要从第三方库里wire一个component，由于我们没有第三方库的源代码，我们不能够annotate @Component想用的那个class。这个时候只能用@Bean返回一个object，这样Spring就可以在application context里将其注册为bean。简单讲就是：We cannot create a bean of a class using @Component, if the class is outside spring container whereas we can create a bean of a class using @Bean even if the class is present outside the spring container.
 
 ### Problem 2
 
